@@ -37,17 +37,14 @@ export class ConsoleComponent implements OnInit, AfterViewChecked {
   }
 
 
-  handleEnter(event: KeyboardEvent) {
-    if (event.key === "Enter") {
-      event.preventDefault();
-      const command = this.consoleInput.nativeElement.value.toLowerCase();  // Convert command to lowercase
-      this.consoleOutput.push({command: true, data: command, isText: true});
-      this.consoleInput.nativeElement.value = '';
-      this.consoleService.getCommandRequest(command).subscribe(response => {
-     //   console.log(response);
-        this.consoleService.executeCommandFunction(response); // call the function
-      });
-    }
+  handleSubmit(event: Event) {
+    event.preventDefault();
+    const command = this.consoleInput.nativeElement.value.toLowerCase();
+    this.consoleOutput.push({command: true, data: command, isText: true});
+    this.consoleInput.nativeElement.value = '';
+    this.consoleService.getCommandRequest(command).subscribe(response => {
+      this.consoleService.executeCommandFunction(response);
+    });
   }
 
 

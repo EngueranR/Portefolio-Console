@@ -19,8 +19,9 @@
       <p *ngIf="line.isText">{{line.data}}</p>
     </div>
   </div>
-  <div class="input-line">
+  <form class="input-line" (submit)="handleSubmit($event)">
     <p [style.color]="getColor()">EngueranR@Portefolio ~ % </p>
-    <input #consoleInput (keydown)="handleEnter($event)" type="text" placeholder="Entrer une commande ici..." >
-  </div>
+    <input #consoleInput type="text" placeholder="Entrer une commande ici..." >
+    <button type="submit" style="display: none;">Submit</button>
+  </form>
 </div>
