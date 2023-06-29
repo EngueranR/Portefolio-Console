@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ConsoleService } from "../services/console.service";
 
 @Component({
   selector: 'app-root',
@@ -6,11 +7,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'PortefolioConsole';
+  title = 'Portefolio EngueranR';
+
+  constructor(private consoleService: ConsoleService) { }
 
 
   ngOnInit() {
+    this.consoleService.changeWallpaperEvent.subscribe(() => {
       this.changeGradient();
+    });
+    this.changeGradient();
   }
 
   public changeGradient() {
