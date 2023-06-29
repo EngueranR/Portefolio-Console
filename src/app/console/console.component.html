@@ -1,0 +1,26 @@
+<div class="container" (click)="handleFocus()" #consoleOutputContainer>
+  <!-- Initial messages display -->
+  <div *ngFor="let msg of initialMessages">
+    <p [style.color]="getColor()">{{msg.data}}</p>
+  </div>
+
+  <!-- Console display -->
+  <div *ngFor="let line of consoleOutput; let i = index">
+    <p *ngIf="line.command" [style.color]="getColor()">EngueranR@Portefolio ~ % {{line.data}}</p>
+    <div *ngIf="!line.command">
+      <table *ngIf="!line.isText && line.data.length > 0">
+        <tr>
+          <th [style.color]="getColor()" *ngFor="let key of getKeys(line.data[0])">{{key}}</th>
+        </tr>
+        <tr [style.color]="getColor()" *ngFor="let item of line.data">
+          <td [style.color]="getColor()" *ngFor="let key of getKeys(item)">{{item[key]}}</td>
+        </tr>
+      </table>
+      <p *ngIf="line.isText">{{line.data}}</p>
+    </div>
+  </div>
+  <div class="input-line">
+    <p [style.color]="getColor()">EngueranR@Portefolio ~ % </p>
+    <input #consoleInput (keydown)="handleEnter($event)" type="text" placeholder="Entrer une commande ici..." >
+  </div>
+</div>
